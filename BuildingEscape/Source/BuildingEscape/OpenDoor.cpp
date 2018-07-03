@@ -1,4 +1,4 @@
-// Copyright Daniel Paddock 2018
+      // Copyright Daniel Paddock 2018
 
 #include "BuildingEscape.h"
 #include "OpenDoor.h"
