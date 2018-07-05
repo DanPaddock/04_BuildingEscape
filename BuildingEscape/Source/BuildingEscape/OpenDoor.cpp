@@ -1,9 +1,9 @@
       // Copyright Daniel Paddock 2018
 
-#include "BuildingEscape.h"
 #include "OpenDoor.h"
+#include "BuildingEscape.h"
+#include "Engine/World.h"
 #include "GameFramework/Actor.h"
-
 
 // Sets default values for this component's properties
 UOpenDoor::UOpenDoor()
@@ -22,9 +22,14 @@ void UOpenDoor::BeginPlay()
 {
 	Super::BeginPlay();
 
+	ActorThatOpens = GetWorld()->GetFirstPlayerController()->GetPawn();
+}
+
+void UOpenDoor::OpenDoor()
+{
 	// Sets Owner
 	AActor* Owner = GetOwner();
-	
+
 	// Creates a new Rotator, opens door
 	FRotator NewRotation = FRotator(0.0f, 60.0f, 0.0f);
 
@@ -38,6 +43,9 @@ void UOpenDoor::TickComponent(float DeltaTime, ELevelTick TickType, FActorCompon
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 
-	// ...
+	if (PressurePlate->IsOverlappingActor(ActorThatOpens)) {
+		OpenDoor();
+	}
+	// If the ActorThatOpens is in the volume, then we open the door...
 }
 
