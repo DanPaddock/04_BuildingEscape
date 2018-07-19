@@ -39,6 +39,8 @@ private:
 
 	float LastDoorOpenTime;
 
-	AActor* ActorThatOpens; // Remember pawn inherits from actor
-	AActor* Owner; // The owning door
+	AActor* Owner; // The owning door	
+	
+	// returns total mass of actors on pressure plate
+	float GetTotalMassOfActorsOnPlate();
 };
